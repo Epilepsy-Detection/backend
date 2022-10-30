@@ -1,6 +1,7 @@
 const User = require("../models/mongoose/user");
 const AppError = require("../utils/AppError");
 const Patient = require("../models/mongoose/patient");
+const mongoose = require("mongoose");
 
 module.exports.createPatient = async (req, res, next) => {
   
@@ -22,5 +23,6 @@ module.exports.createPatient = async (req, res, next) => {
   await profile.save({ session });
   await session.commitTransaction();
   session.endSession();
-  
+   
+  res.status(200).json({ profile });
   };
