@@ -28,7 +28,7 @@ module.exports.login = async (req, res, next) => {
   if (user.role == "doctor") {
     profile = await Doctor.findOne({ _userId: user._id });
   } else if (user.role == "patient") {
-    profile = await Patient.findOne({ _userId: user._id });;
+    profile = await Patient.findOne({ _userId: user._id });
   }
 
   userAuthenticated(res, user, profile);
