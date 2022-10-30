@@ -1,4 +1,4 @@
 node_modules/
-# loggers/combined.log
-# loggers/error.log
-# loggers/exceptions.log
+loggers/combined.log
+loggers/error.log
+loggers/exceptions.log
