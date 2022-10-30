@@ -3,6 +3,10 @@ const AppError = require("../utils/AppError");
 const Patient = require("../models/mongoose/patient");
 const mongoose = require("mongoose");
 
+//  @desc   allows doctor to create new patient
+//  @route  POST /api/v1/patient
+//  @access doctor
+//  @body   email   password firstName lastName
 module.exports.createPatient = async (req, res, next) => {
   
   const { email, password, firstName, lastName } = req.body;
