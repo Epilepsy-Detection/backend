@@ -17,7 +17,7 @@ module.exports.createPatient = async (req, res, next) => {
   
   const session = await mongoose.startSession();
   session.startTransaction();
-  const user = new User({ email, password });
+  const user = new User({ email, password , role : "patient"});
   await user.save({ session });
   const profile = new Patient({
     _userId: user._id,
