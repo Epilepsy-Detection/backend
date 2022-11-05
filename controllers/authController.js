@@ -43,8 +43,8 @@ module.exports.login = async (req, res, next) => {
 module.exports.register = async (req, res, next) => {
   const { email, password, firstName, lastName } = req.body;
 
-  const pr = await User.findOne({ email });
-  if (pr) {
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
     return next(new AppError("A User with the same Email Already Exists", 400));
   }
 
