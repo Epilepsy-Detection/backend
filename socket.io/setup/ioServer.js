@@ -7,6 +7,7 @@ const {
 
 const { verifyJWTToken } = require("../../utils/verifyJWT");
 const AppError = require("../../utils/AppError");
+const socketLog = require('./socketConsoleLog')
 
 module.exports = (httpServer) => {
   const io = new Server(httpServer);
@@ -23,15 +24,15 @@ module.exports = (httpServer) => {
         throw new AppError("Missing access token", 401)
       }
     } catch (err) {
-      logger.error(err)
+      socketLog(err)
     }
   }).on("connection", (socket) => {
-    console.log(`new socket connected - userId; ${socket.user._id}`);
+    socketLog(`New Connection - userId:  ${socket.user._id}`);
 
     socket.on(NEW_MESSAGE_EVENT_NAME, newMessageEvent);
 
     socket.on("disconnect", () => {
-      console.log("new socket disconnected", socket.id);
+      socketLog(`Socket Disconnected - userId:  ${socket.user._id}`);
     });
   });
 
