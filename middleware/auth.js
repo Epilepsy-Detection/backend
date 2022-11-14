@@ -1,24 +1,15 @@
-const jwt = require("jsonwebtoken");
 const AppError = require("../utils/AppError");
+const { verifyJWTToken } = require("../utils/verifyJWT");
 
 module.exports = (req, res, next) => {
   const tokenString = req.header("Authorization");
 
   try {
-    if (!tokenString.startsWith("Bearer")) {
-      return throwInvalidTokenError(next);
-    }
-
-    const values = tokenString.split(" ");
-
-    if (values.length != 2) {
-      return throwInvalidTokenError(next);
-    }
-
-    const token = values[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = verifyJWTToken(tokenString);
     req.user = decoded;
+
     next();
+
   } catch (err) {
     return throwInvalidTokenError(next);
   }
