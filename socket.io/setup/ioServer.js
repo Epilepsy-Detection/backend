@@ -5,16 +5,19 @@ const {
   newMessageEvent,
 } = require("../events/dataTransfer/newMessageEvent");
 
+const socketLog = require("./socketConsoleLog");
+const authenitcate = require("./authenitcate");
+
 module.exports = (httpServer) => {
   const io = new Server(httpServer);
 
-  io.on("connection", (socket) => {
-    console.log("new socket connected", socket.id);
+  io.use(authenitcate).on("connection", (socket) => {
+    socketLog(`New Connection - userId:  ${socket.user._id}`);
 
     socket.on(NEW_MESSAGE_EVENT_NAME, newMessageEvent);
 
     socket.on("disconnect", () => {
-      console.log("new socket disconnected", socket.id);
+      socketLog(`Socket Disconnected - userId:  ${socket.user._id}`);
     });
   });
 
