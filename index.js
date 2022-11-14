@@ -1,4 +1,5 @@
 const express = require("express");
+require("express-async-errors");
 const { createServer } = require("http");
 const logger = require("./loggers/logger");
 
