@@ -5,28 +5,13 @@ const {
   newMessageEvent,
 } = require("../events/dataTransfer/newMessageEvent");
 
-const { verifyJWTToken } = require("../../utils/verifyJWT");
-const AppError = require("../../utils/AppError");
-const socketLog = require('./socketConsoleLog')
+const socketLog = require("./socketConsoleLog");
+const authenitcate = require("./authenitcate");
 
 module.exports = (httpServer) => {
   const io = new Server(httpServer);
 
-  io.use((socket, next) => {
-    try {
-      const auth = socket.handshake.auth;
-      if (auth && auth.token) {
-        const token = auth.token;
-        const decoded = verifyJWTToken(token);
-        socket.user = decoded;
-        next();
-      } else {
-        throw new AppError("Missing access token", 401)
-      }
-    } catch (err) {
-      socketLog(err)
-    }
-  }).on("connection", (socket) => {
+  io.use(authenitcate).on("connection", (socket) => {
     socketLog(`New Connection - userId:  ${socket.user._id}`);
 
     socket.on(NEW_MESSAGE_EVENT_NAME, newMessageEvent);
