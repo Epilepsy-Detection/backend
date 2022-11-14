@@ -18,6 +18,11 @@ const patientSchema = mongoose.Schema({
     required: [true, "You must provide a lastname"],
     minlength: 1,
   },
+  _doctorId: {
+    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Doctor",
+  },
 });
 
 const Patient = mongoose.model("Patient", patientSchema);
