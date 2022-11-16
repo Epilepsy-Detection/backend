@@ -8,6 +8,7 @@ const logger = require("../../loggers/logger");
 const socketLog = require("./socketConsoleLog");
 const authenitcate = require("../middleware/authenitcate");
 const associateDoctor = require("../middleware/associateDoctor");
+const associatePatient = require("../middleware/associatePatient");
 
 let io;
 
@@ -20,6 +21,7 @@ module.exports = (httpServer) => {
 
   io.use(authenitcate)
     .use(associateDoctor(io))
+    .use(associatePatient(io))
     .on("connection", async (socket) => {
       socketLog(
         `New Connection - userId:  ${socket.user._id} - role: ${socket.user.role}`
