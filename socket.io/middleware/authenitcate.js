@@ -1,5 +1,6 @@
 const AppError = require("../../utils/AppError");
 const { verifyJWTToken } = require("../../utils/verifyJWT");
+const { addNewConnection } = require("../service/addNewConnection");
 
 module.exports = (socket, next) => {
   try {
@@ -10,6 +11,9 @@ module.exports = (socket, next) => {
       const decoded = verifyJWTToken(token);
 
       socket.user = decoded;
+
+      addNewConnection(socket.id, decoded);
+
       next();
       
     } else {
