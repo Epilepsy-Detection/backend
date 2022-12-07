@@ -1,8 +1,12 @@
-const { activeConnections } = require("./dataStorage");
+const redisClient = require("../setup/redisClient");
 
-module.exports.removeConnection = (socketId) => {
-  const connection =  activeConnections[socketId];
-  delete activeConnections[socketId];
+module.exports.removeConnection = async (socketId) => {
+
+  const key = `CONN:${socketId}`;
+  const client = await redisClient.getInstance();
+
+  const connection = await client.hGetAll(key)
+  await client.del(`CONN:${socketId}`);
 
   return connection;
 }

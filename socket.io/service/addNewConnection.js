@@ -1,13 +1,12 @@
-const { activeConnections } = require("./dataStorage");
+const redisClient = require("../setup/redisClient");
 
-
-module.exports.addNewConnection = (socketId, user) => {
+module.exports.addNewConnection = async (socketId, user) => {
     const connection = {
-        socketId,
         userId: user._id,
         profileId: user._profileId,
         role: user.role
     }
 
-    activeConnections[socketId] = connection;
+    const client = redisClient.getInstance();
+    await client.HSET(`CONN:${socketId}`, connection);
 }

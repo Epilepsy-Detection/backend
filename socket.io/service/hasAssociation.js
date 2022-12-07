@@ -1,6 +1,8 @@
-const { doctorPatientAssociation, activeConnections } = require("./dataStorage");
+const redisClient = require("../setup/redisClient");
 
-module.exports.getAssociationByPatientSocketId = (patientSocketId) => {
-  const patientId = activeConnections[patientSocketId].profileId;
-  return doctorPatientAssociation[patientId];
+module.exports.getDoctorSocketIdByPatient = async (patientSocketId) => {
+  const client = redisClient.getInstance();
+  const patientId = await client.HGET(`CONN:${patientSocketId}`, 'profileId');
+
+  return await client.HGET(`DP_ASS:${patientId}`, "doctorSocketId");
 }
