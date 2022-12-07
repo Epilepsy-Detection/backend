@@ -1,9 +1,18 @@
-const { doctorPatientAssociation } = require("./dataStorage");
+const redisClient = require("../setup/redisClient");
 
-module.exports.removeDoctorAssociations = (doctorId) => {
-  for (const ass in doctorPatientAssociation) {
-    if (ass["doctorId"] === doctorId) {
-      delete doctorPatientAssociation[ass];
-    }
-  }
+module.exports.removeDoctorAssociations = async (doctorId) => {
+
+  const client = redisClient.getInstance();
+
+  const results = await client.ft.search(
+    'idx:assDoctorId',
+    `@doctorId:"${doctorId}"`,
+  );
+
+  const deletePromises = results.documents.map(async (document) => {
+    await client.del(document.id);
+  });
+
+  await Promise.all(deletePromises);
+
 }

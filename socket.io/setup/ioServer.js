@@ -1,7 +1,6 @@
 const { Server } = require("socket.io");
 const {
   NEW_MESSAGE_EVENT_NAME,
-  newEEGBatchMessageEvent: newMessageEvent,
 } = require("../events/dataTransfer/newEEGBatchMessage");
 const logger = require("../../loggers/logger");
 
@@ -9,28 +8,30 @@ const socketLog = require("./socketConsoleLog");
 const authenticate = require("../middleware/authenitcate");
 const { removeConnection } = require("../service/removeConnection");
 const { addPatientDoctorAssociation } = require("../service/addAssociation");
-const { getAssociationByPatientSocketId } = require("../service/hasAssociation");
+const { getDoctorSocketIdByPatient } = require("../service/hasAssociation");
 const { getActivePatientsByDoctor } = require("../service/getActivePatientsByDoctor");
 const { removeDoctorAssociations } = require("../service/removeDoctorAssociations");
-const { addCorrespondingDoctorToPatient } = require("../middleware/addCorrespondingDoctorToPatient");
+const redisClient = require("./redisClient");
 
 let io;
 
-module.exports = (httpServer) => {
+module.exports = async (httpServer) => {
   io = new Server(httpServer);
 
+  await redisClient.setup();
+
   io.use(authenticate)
-    .use(addCorrespondingDoctorToPatient)
     .on("connection", async (socket) => {
+
       socketLog(
         `New Connection - userId:  ${socket.user._id} - role: ${socket.user.role}`
       );
 
-      socket.on(NEW_MESSAGE_EVENT_NAME, (data) => {
-        const association = getAssociationByPatientSocketId(socket.id);
+      socket.on(NEW_MESSAGE_EVENT_NAME, async (data) => {
+        const doctorSocketId = await getDoctorSocketIdByPatient(socket.id);
 
-        if (association) {
-          io.to(association.doctorSocketId).emit("new-patient-message", data);
+        if (doctorSocketId) {
+          io.to(doctorSocketId).emit("new-patient-message", data);
         }
       });
 
@@ -43,13 +44,11 @@ module.exports = (httpServer) => {
         io.to(socket.id).emit("active_patients_result", patients);
       });
 
-      socket.on("disconnect", () => {
-        const connection = removeConnection(socket.id);
+      socket.on("disconnect", async () => {
+        const connection = await removeConnection(socket.id);
 
         if (connection.role === 'doctor') {
-          removeDoctorAssociations(connection.doctorId);
-        } else if (connection.role === 'patient') {
-          remov
+          await removeDoctorAssociations(connection.profileId);
         }
 
         socketLog(`Socket Disconnected - userId:  ${socket.user._id}`);

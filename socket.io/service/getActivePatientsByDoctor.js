@@ -1,16 +1,20 @@
-const { activeConnections, patientCorrespondingDoctor } = require("./dataStorage");
+
 
 module.exports.getActivePatientsByDoctor = (doctorSocketId) => {
-    const doctorId = activeConnections[doctorSocketId].profileId;
-    const patientIds = [];
+    // const doctorId = activeConnections[doctorSocketId].profileId;
+    // const patientIds = [];
+    //
+    // for (const patientId in patientCorrespondingDoctor) {
+    //     if (patientCorrespondingDoctor[patientId] === doctorId) {
+    //         patientIds.push(patientId);
+    //     }
+    // }
+    //
+    // return patientIds;
 
-    for (const patientId in patientCorrespondingDoctor) {
-        if (patientCorrespondingDoctor[patientId] === doctorId) {
-            patientIds.push(patientId);
-        }
-    }
+    // TODO: IMPLEMENT GET ACTIVE PATIENTS USING INDEX @SALLAM
 
-    return patientIds;
+    return [];
 
 
 }

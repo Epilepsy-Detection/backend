@@ -2,7 +2,7 @@ const AppError = require("../../utils/AppError");
 const { verifyJWTToken } = require("../../utils/verifyJWT");
 const { addNewConnection } = require("../service/addNewConnection");
 
-module.exports = (socket, next) => {
+module.exports = async (socket, next) => {
   try {
     const auth = socket.handshake.auth;
 
@@ -12,7 +12,7 @@ module.exports = (socket, next) => {
 
       socket.user = decoded;
 
-      addNewConnection(socket.id, decoded);
+      await addNewConnection(socket.id, decoded);
 
       next();
       
