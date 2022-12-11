@@ -22,6 +22,7 @@ const patientSchema = mongoose.Schema({
     required: true,
     type: mongoose.Schema.Types.ObjectId,
     ref: "Doctor",
+    index: true,
   },
 });
 
