@@ -9,16 +9,13 @@ const AppError = require("../utils/AppError");
 //  @Params -
 module.exports.profile = async (req,res,next) =>{
     
-    if (!req.user) {
-        return next(new AppError("User Not Found", 404));   
-    }
     if (req.user.role === "doctor") {
         profile = await Doctor.findById(req.user._profileId);
       }
     else if (req.user.role === "patient") {
         profile = await Patient.findById(req.user._profileId);
       }
-      
+
     if (!profile) {
         return next(new AppError("Could not find a profile", 404));
       }  
