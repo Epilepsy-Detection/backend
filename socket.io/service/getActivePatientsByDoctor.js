@@ -1,20 +1,27 @@
+const redisClient = require("../setup/redisClient");
+const Patient = require('../../models/mongoose/patient')
 
 
-module.exports.getActivePatientsByDoctor = (doctorSocketId) => {
-    // const doctorId = activeConnections[doctorSocketId].profileId;
-    // const patientIds = [];
-    //
-    // for (const patientId in patientCorrespondingDoctor) {
-    //     if (patientCorrespondingDoctor[patientId] === doctorId) {
-    //         patientIds.push(patientId);
-    //     }
-    // }
-    //
-    // return patientIds;
+module.exports.getActivePatientsByDoctor = async (doctorSocketId) => {
+    // TODO: ADJUST THIS TO WORK
+    const client = redisClient.getInstance();
+    const doctorId = await client.hGet(`CONN:${doctorSocketId}`, 'profileId');
 
-    // TODO: IMPLEMENT GET ACTIVE PATIENTS USING INDEX @SALLAM
+    const patients = await Patient.find({_doctorId: doctorId});
 
-    return [];
+    if (!patients || patients.length === 0) return [];
+
+    const patientsIds = patients.map(patient => patient._id.toString());
+    const searchString = patientsIds.join(" | ");
+
+    const results = await client.ft.search(
+      'idx:connProfileId',
+      `@profileId:"${searchString}"`
+    );
+
+    const ids = results.documents.map((document) => document.value["profileId"]);
+
+    return ids;
 
 
 }

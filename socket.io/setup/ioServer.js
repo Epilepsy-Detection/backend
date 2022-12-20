@@ -24,7 +24,7 @@ module.exports = async (httpServer) => {
     .on("connection", async (socket) => {
 
       socketLog(
-        `New Connection - userId:  ${socket.user._id} - role: ${socket.user.role}`
+        `New Connection - profileId:  ${socket.user._profileId} - role: ${socket.user.role}`
       );
 
       socket.on(NEW_MESSAGE_EVENT_NAME, async (data) => {
@@ -51,7 +51,7 @@ module.exports = async (httpServer) => {
           await removeDoctorAssociations(connection.profileId);
         }
 
-        socketLog(`Socket Disconnected - userId:  ${socket.user._id}`);
+        socketLog(`Socket Disconnected - profileId:  ${socket.user._profileId}`);
       });
     });
 
