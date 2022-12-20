@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e71e247d-bab8-481e-935a-286f724e2bb8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mongoose/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/mongoose/patient.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/reportController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/instances/memoryUpload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/APIV1/report.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/filesPayloadExists.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/filesPayloadExists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/APIV1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/APIV1/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/APIV1/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/APIV1/upload.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +28,9 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -31,23 +42,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;14.17.3&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;14.17.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/omaralaa/Projects/ep-det/backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "14.17.3",
+    "javascript.nodejs.core.library.typings.version": "14.17.3",
+    "last_opened_file_path": "/Users/omaralaa/Projects/ep-det/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/usr/local/lib/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/socket.io/connectionSetup" />
@@ -78,6 +91,8 @@
       <workItem from="1670699225403" duration="573000" />
       <workItem from="1670773433013" duration="4191000" />
       <workItem from="1670781967184" duration="922000" />
+      <workItem from="1671560876033" duration="5000" />
+      <workItem from="1671560888431" duration="4325000" />
     </task>
     <servers />
   </component>
