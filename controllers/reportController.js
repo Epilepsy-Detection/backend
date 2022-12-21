@@ -1,10 +1,18 @@
 const AppError = require("../utils/AppError");
 const Patient = require("../models/mongoose/patient");
+const { predict } = require("../services/MLmodelService");
 
-//  @desc   allows doctor to create new report for a patient
+const asyncReadFile = async (buffer) => {
+  const arr = buffer.toString().split(/\r?\n/);
+  return arr
+    .slice(0, parseInt(process.env.SIGNAL_SAMPLE_SIZE))
+    .map((i) => Number(i));
+};
+
+//  @desc   allows doctor to create new report for a patient of his
 //  @route  POST /api/v1/report
 //  @access doctor
-//  @body   email   password firstName lastName
+//  @body   patientId
 module.exports.createReport = async (req, res, next) => {
   const { patientId } = req.body;
 
@@ -22,11 +30,14 @@ module.exports.createReport = async (req, res, next) => {
     );
   }
 
-  // TODO: Call the api call and get the prediction
+  const arr = await asyncReadFile(req.file.buffer);
+  const prediction = await predict(arr);
+
   // TODO: Save to the S3 Bucket
 
   const report = {
-    prediction: "something",
+    patientId,
+    prediction,
   };
 
   res.status(201).json(report);
