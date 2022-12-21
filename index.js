@@ -1,6 +1,9 @@
+require("dotenv").config();
+
 const express = require("express");
 require("express-async-errors");
 const { createServer } = require("http");
+
 const logger = require("./loggers/logger");
 
 const app = express();
