@@ -1,7 +1,4 @@
 const { Server } = require("socket.io");
-const {
-  NEW_MESSAGE_EVENT_NAME,
-} = require("../events/dataTransfer/newEEGBatchMessage");
 const logger = require("../../loggers/logger");
 
 const socketLog = require("./socketConsoleLog");
@@ -34,7 +31,7 @@ module.exports = async (httpServer) => {
       `New Connection - profileId:  ${socket.user._profileId} - role: ${socket.user.role}`
     );
 
-    socket.on(NEW_MESSAGE_EVENT_NAME, async (data) => {
+    socket.on("new-eeg-batch-message", async (data) => {
       const doctorSocketId = await getDoctorSocketIdByPatient(socket.id);
 
       if (doctorSocketId) {
