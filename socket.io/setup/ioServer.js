@@ -39,8 +39,8 @@ module.exports = async (httpServer) => {
         addPatientDoctorAssociation(socket.id, patientId);
       });
 
-      socket.on("get_active_patients", () => {
-        const patients = getActivePatientsByDoctor(socket.id);
+      socket.on("get_active_patients", async () => {
+        const patients = await getActivePatientsByDoctor(socket.id);
         io.to(socket.id).emit("active_patients_result", patients);
       });
 

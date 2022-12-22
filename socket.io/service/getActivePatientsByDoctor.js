@@ -3,7 +3,7 @@ const Patient = require('../../models/mongoose/patient')
 
 
 module.exports.getActivePatientsByDoctor = async (doctorSocketId) => {
-    // TODO: ADJUST THIS TO WORK
+
     const client = redisClient.getInstance();
     const doctorId = await client.hGet(`CONN:${doctorSocketId}`, 'profileId');
 
@@ -16,7 +16,7 @@ module.exports.getActivePatientsByDoctor = async (doctorSocketId) => {
 
     const results = await client.ft.search(
       'idx:connProfileId',
-      `@profileId:"${searchString}"`
+      searchString
     );
 
     const ids = results.documents.map((document) => document.value["profileId"]);
