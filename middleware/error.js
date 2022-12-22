@@ -1,5 +1,6 @@
 const AppError = require("../utils/AppError");
 const logger = require("../loggers/logger");
+const { MulterError } = require("multer");
 
 // Handle application errors
 module.exports = (err, req, res, next) => {
@@ -11,13 +12,28 @@ module.exports = (err, req, res, next) => {
     error = new AppError(err.message, 400);
   }
 
-  const statusCode = error.statusCode || 500;
+  let errorMessage = error.message;
 
-  let errorResponse = error.errorsObject || error.message;
+  if (error instanceof MulterError) {
+    if (error.code === "LIMIT_UNEXPECTED_FILE") {
+      error = new AppError(`Invalid number of uploads`, 400);
+    }
+  }
+
+  const statusCode = error.statusCode || 500;
 
   if (statusCode === 500) {
     logger.error(err.message);
-    errorResponse = "Internal Server Error";
+    errorMessage = "Internal Server Error";
+  }
+
+  const errorResponse = {
+    message: errorMessage,
+  };
+
+  // Setting the correct status code
+  if (error.errorArr && error.errorArr.length !== 0) {
+    errorResponse.details = error.errorArr;
   }
 
   res.status(statusCode).json({
