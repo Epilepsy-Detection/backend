@@ -8,6 +8,7 @@ module.exports = (schema) => async (req, res, next) => {
     next();
   } catch (err) {
     // Generate error array and pass it to error middleware
+    console.log(err)
     const errors = err.details.map((detail) => {
       return {
         path: detail.path[0],
