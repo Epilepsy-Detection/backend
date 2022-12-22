@@ -1,8 +1,8 @@
 // Custom Error class that contains message and status code
 class AppError extends Error {
-  constructor(message, statusCode) {
+  constructor(message, statusCode, errorArr) {
     super(message);
-    this.errorsObject = message instanceof Array ? message : null;
+    this.errorArr = errorArr;
     this.statusCode = statusCode;
   }
 }
