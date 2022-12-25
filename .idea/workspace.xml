@@ -4,52 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e71e247d-bab8-481e-935a-286f724e2bb8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/patientController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/patientController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/profileController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/reportController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/reportController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/test_file.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instances/memoryUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/instances/memoryUpload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/error.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/error.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/nonExistingRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/nonExistingRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/role-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/role-auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/validateBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/validateBody.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mongoose/doctor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mongoose/patient.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mongoose/report.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mongoose/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/APIV1/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/APIV1/patient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/MLmodelService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/MLmodelService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/middleware/authenitcate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/addAssociation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/addNewConnection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/getActivePatientsByDoctor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/hasAssociation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/loggers/combined.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/loggers/error.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/loggers/exceptions.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/removeConnection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/service/removeDoctorAssociations.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/ioServer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/loggers/combined.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/loggers/error.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/loggers/exceptions.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/redisClient.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/socketConsoleLog.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/utils/getDoctorSockets.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/utils/getPatientSockets.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/startup/body.js" beforeDir="false" afterPath="$PROJECT_DIR$/startup/body.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startup/db.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/startup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/startup/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/verifyJWT.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/creation/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/patient/createPatient.js" afterDir="false" />
-    </list>
+    <list default="true" id="e71e247d-bab8-481e-935a-286f724e2bb8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +85,7 @@
       <workItem from="1671645368674" duration="6412000" />
       <workItem from="1671994761576" duration="2494000" />
       <workItem from="1672006502732" duration="203000" />
-      <workItem from="1672007807069" duration="746000" />
+      <workItem from="1672007807069" duration="1467000" />
     </task>
     <servers />
   </component>
