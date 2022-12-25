@@ -1,4 +1,4 @@
-const AppError = require("../utils/AppError");
+const AppError = require("ep-det-core/utils/AppError");
 
 module.exports = (schema) => async (req, res, next) => {
   try {

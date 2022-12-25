@@ -1,4 +1,4 @@
-const AppError = require("../utils/AppError");
+const AppError = require("ep-det-core/utils/AppError");
 const logger = require("../loggers/logger");
 const { MulterError } = require("multer");
 

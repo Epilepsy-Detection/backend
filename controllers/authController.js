@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const User = require("../models/mongoose/user");
-const Doctor = require("../models/mongoose/doctor");
-const AppError = require("../utils/AppError");
-const Patient = require("../models/mongoose/patient");
+const User = require("ep-det-core/models/mongoose/user");
+const Doctor = require("ep-det-core/models/mongoose/doctor");
+const Patient = require("ep-det-core/models/mongoose/patient");
+const AppError = require("ep-det-core/utils/AppError");
 
 //  @desc   logins a user into the system and return access token and profile
 //  @route  POST /api/v1/auth/login
