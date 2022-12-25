@@ -2,7 +2,10 @@ const AppError = require("ep-det-core/utils/AppError");
 const Patient = require("ep-det-core/models/mongoose/patient");
 const Report = require("ep-det-core/models/mongoose/report");
 const { predict } = require("../services/MLmodelService");
-const { uploadPatientSignal } = require("../repositories/signalS3BucketRepo");
+const {
+  uploadPatientSignal,
+  signPatientSignalFile,
+} = require("../repositories/signalS3BucketRepo");
 
 const processFile = async (buffer) => {
   const sampleSize = parseInt(process.env.SIGNAL_SAMPLE_SIZE);
@@ -60,5 +63,8 @@ module.exports.createReport = async (req, res, next) => {
     fileKey: s3Object.Key,
   });
 
-  res.status(201).json(report);
+  // Sign the URL
+  const signedObjectURL = await signPatientSignalFile(s3Object.Key);
+
+  res.status(201).json({ report, url: signedObjectURL });
 };
