@@ -1,4 +1,4 @@
-# ep-det-backend
+# ep-det-api
 
 # Installing
 

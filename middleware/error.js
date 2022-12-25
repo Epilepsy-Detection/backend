@@ -1,6 +1,7 @@
 const AppError = require("ep-det-core/utils/AppError");
 const logger = require("../loggers/logger");
 const { MulterError } = require("multer");
+require('colors')
 
 // Handle application errors
 module.exports = (err, req, res, next) => {
@@ -23,7 +24,7 @@ module.exports = (err, req, res, next) => {
   const statusCode = error.statusCode || 500;
 
   if (statusCode === 500) {
-    logger.error(err.message);
+    logger.error(err.message.red);
     errorMessage = "Internal Server Error";
   }
 

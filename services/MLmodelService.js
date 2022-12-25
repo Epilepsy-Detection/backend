@@ -9,6 +9,10 @@ module.exports.predict = async (data) => {
 
     return response.data;
   } catch (e) {
+
+    if (e.code === 'ECONNREFUSED') {
+      throw new AppError('Failed to connect to ml-server, due to internal server error', 500)
+    }
     throw new AppError(e, 400);
   }
 };
