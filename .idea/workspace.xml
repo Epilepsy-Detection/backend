@@ -6,7 +6,49 @@
   <component name="ChangeListManager">
     <list default="true" id="e71e247d-bab8-481e-935a-286f724e2bb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socket.io/setup/ioServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/socket.io/setup/ioServer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/patientController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/patientController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/profileController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/reportController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/reportController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/test_file.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instances/memoryUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/instances/memoryUpload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/error.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/error.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/nonExistingRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/nonExistingRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/role-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/role-auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/validateBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/validateBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mongoose/doctor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mongoose/patient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mongoose/report.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mongoose/user.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/APIV1/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/APIV1/patient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/MLmodelService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/MLmodelService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/middleware/authenitcate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/addAssociation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/addNewConnection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/getActivePatientsByDoctor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/hasAssociation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/loggers/combined.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/loggers/error.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/loggers/exceptions.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/removeConnection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/service/removeDoctorAssociations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/setup/ioServer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/setup/loggers/combined.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/setup/loggers/error.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/setup/loggers/exceptions.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/setup/redisClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/setup/socketConsoleLog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/utils/getDoctorSockets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/socket.io/utils/getPatientSockets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/startup/body.js" beforeDir="false" afterPath="$PROJECT_DIR$/startup/body.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startup/db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/startup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/startup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/verifyJWT.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/creation/patient.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/patient/createPatient.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,25 +76,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;14.17.3&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;14.17.3&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/omaralaa/Projects/ep-det/backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/usr/local/lib/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "14.17.3",
+    "javascript.nodejs.core.library.typings.version": "14.17.3",
+    "last_opened_file_path": "/Users/omaralaa/Projects/ep-det/ep-det-api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/usr/local/lib/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/socket.io/connectionSetup" />
@@ -86,21 +128,13 @@
       <workItem from="1671560876033" duration="5000" />
       <workItem from="1671560888431" duration="7955000" />
       <workItem from="1671645368674" duration="6412000" />
+      <workItem from="1671994761576" duration="2494000" />
+      <workItem from="1672006502732" duration="203000" />
+      <workItem from="1672007807069" duration="746000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/controllers/authController.js</url>
-          <line>12</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

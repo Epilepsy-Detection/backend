@@ -1,6 +1,6 @@
 const multer = require("multer");
 
-const AppError = require("../utils/AppError");
+const AppError = require("ep-det-core/utils/AppError");
 
 const storage = multer.memoryStorage();
 const memoryUpload = multer({

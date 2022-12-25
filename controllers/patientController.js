@@ -1,6 +1,6 @@
-const User = require("../models/mongoose/user");
-const AppError = require("../utils/AppError");
-const Patient = require("../models/mongoose/patient");
+const User = require("ep-det-core/models/mongoose/user");
+const AppError = require("ep-det-core/utils/AppError");
+const Patient = require("ep-det-core/models/mongoose/patient");
 const mongoose = require("mongoose");
 
 //  @desc   allows doctor to create new patient

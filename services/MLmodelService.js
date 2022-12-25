@@ -1,5 +1,5 @@
 const api = require("../instances/machineLearningServer");
-const AppError = require("../utils/AppError");
+const AppError = require("ep-det-core/utils/AppError");
 
 module.exports.predict = async (data) => {
   try {

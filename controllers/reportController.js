@@ -1,8 +1,8 @@
-const AppError = require("../utils/AppError");
-const Patient = require("../models/mongoose/patient");
+const AppError = require("ep-det-core/utils/AppError");
+const Patient = require("ep-det-core/models/mongoose/patient");
+const Report = require("ep-det-core/models/mongoose/report");
 const { predict } = require("../services/MLmodelService");
 const { uploadPatientSignal } = require("../repositories/signalS3BucketRepo");
-const Report = require("../models/mongoose/report");
 
 const processFile = async (buffer) => {
   const sampleSize = parseInt(process.env.SIGNAL_SAMPLE_SIZE);

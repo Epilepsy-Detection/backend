@@ -1,11 +1,13 @@
 const setupLogger = require("./logger");
 const setupRoutes = require("./routes");
-const setupDB = require("./db");
 const setupBodyParsing = require("./body");
+const setupDB = require("ep-det-core/startup-modules/db");
+
+const logger = require('../loggers/logger');
 
 module.exports = (app) => {
   setupLogger(app);
-  setupDB();
+  setupDB(logger);
   setupBodyParsing(app);
   setupRoutes(app);
 };

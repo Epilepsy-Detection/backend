@@ -1,5 +1,5 @@
-const AppError = require("../utils/AppError");
-const { verifyJWTToken } = require("../utils/verifyJWT");
+const AppError = require("ep-det-core/utils/AppError");
+const { verifyJWTToken } = require("ep-det-core/utils/verifyJWT");
 
 module.exports = (req, res, next) => {
   const tokenString = req.header("Authorization");
