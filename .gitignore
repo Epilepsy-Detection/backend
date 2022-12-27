@@ -2,3 +2,4 @@ node_modules/
 loggers/combined.log
 loggers/error.log
 loggers/exceptions.log
+.idea/
