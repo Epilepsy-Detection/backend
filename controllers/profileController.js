@@ -23,7 +23,7 @@ module.exports.getMyProfile = async (req, res, next) => {
 };
 
 //  @desc   returns a doctor's patient profile
-//  @route  GET /api/v1/profile/:profileId
+//  @route  GET /api/v1/profile/associatedPatients
 //  @access doctor
 //  @Params profileId
 module.exports.getPatientProfile = async (req, res, next) => {
