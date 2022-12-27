@@ -52,9 +52,9 @@ module.exports.getPatientProfile = async (req, res, next) => {
 //  @access doctor
 //  @Params -
 module.exports.getPatientsByDoctorId = async (req, res, next) => {
-  const patients = await Patient.find({ _doctorId: req.user._doctorId }).select(
-    "firstName lastName"
-  );
+  const patients = await Patient.find({
+    _doctorId: req.user._profileId,
+  }).select("firstName lastName");
 
   res.status(200).json({ patients });
 };
