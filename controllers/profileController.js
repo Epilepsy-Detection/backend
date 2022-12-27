@@ -46,3 +46,15 @@ module.exports.getPatientProfile = async (req, res, next) => {
 
   res.status(200).json({ patient });
 };
+
+//  @desc   returns ids, names of all doctor's patients
+//  @route  GET /api/v1/profile/:profileId
+//  @access doctor
+//  @Params -
+module.exports.getPatientsByDoctorId = async (req, res, next) => {
+  const patients = await Patient.find({ _doctorId: req.user._doctorId }).select(
+    "firstName lastName"
+  );
+
+  res.status(200).json({ patients });
+};
