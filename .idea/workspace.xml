@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e71e247d-bab8-481e-935a-286f724e2bb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/profileController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
       <workItem from="1672006502732" duration="203000" />
       <workItem from="1672007807069" duration="1467000" />
       <workItem from="1672010707772" duration="922000" />
-      <workItem from="1672160842508" duration="330000" />
+      <workItem from="1672160842508" duration="1141000" />
     </task>
     <servers />
   </component>
@@ -104,12 +103,6 @@
           <url>file://$PROJECT_DIR$/controllers/reportController.js</url>
           <line>68</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/controllers/profileController.js</url>
-          <line>54</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
