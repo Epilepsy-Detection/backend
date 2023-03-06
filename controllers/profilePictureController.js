@@ -40,9 +40,12 @@ module.exports.uploadprofilePicture = async (req, res, next) => {
 
   if (req.user.role==="patient"){
 
+    const filter = { _id: profileId };
+    const update = { profilePicture: profilePicture };
+
     const updatedPatient = await Patient.findOneAndUpdate(
-      { _id: profileId }, 
-      { $push: { profilePicture: profilePicture } }, {new: true});
+      filter, 
+      update, {new: true});
       
       // Sign the URL
       const signedObjectURL = await signProfilePictureFile(s3Object.Key);
@@ -53,9 +56,12 @@ module.exports.uploadprofilePicture = async (req, res, next) => {
       });
   }
   if (req.user.role==="doctor"){
+    const filter = { _id: profileId };
+    const update = { profilePicture: profilePicture };
+
     const updatedDoctor = await Doctor.findOneAndUpdate(
-      { _id: profileId }, 
-      { $push: { profilePicture: profilePicture } }, {new: true});
+      filter, 
+      update, {new: true});
 
       // Sign the URL
       const signedObjectURL = await signProfilePictureFile(s3Object.Key);
