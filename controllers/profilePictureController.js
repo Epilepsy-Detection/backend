@@ -2,7 +2,7 @@ const User = require("ep-det-core/models/mongoose/user");
 const AppError = require("ep-det-core/utils/AppError");
 const Patient = require("ep-det-core/models/mongoose/patient");
 const {uploadProfilePicture,signProfilePictureFile,} = require("../repositories/imageS3BucketRepo");
-
+const Doctor = require("ep-det-core/models/mongoose/doctor");
 
 const processImage = async (buffer) => {
   try {
@@ -26,19 +26,16 @@ const processImage = async (buffer) => {
 //  @access public
 //  @body   imageFile              
 module.exports.uploadprofilePicture = async (req, res, next) => {
-  
-  console.log(req.file);
-  console.log(req.user._profileId);
 
   const profileId = req.user._profileId;
 
   await processImage(req.file.buffer);
-  
-  const s3Object = await uploadProfilePicture(profileId, req.file.buffer);
-
-  const profilePicture = s3Object.Key;
 
   if (req.user.role==="patient"){
+    const keyName = `patients/${profileId}`;
+    const s3Object = await uploadProfilePicture(keyName, req.file.buffer);
+
+    const profilePicture = s3Object.Key;
 
     const filter = { _id: profileId };
     const update = { profilePicture: profilePicture };
@@ -48,7 +45,7 @@ module.exports.uploadprofilePicture = async (req, res, next) => {
       update, {new: true});
       
       // Sign the URL
-      const signedObjectURL = await signProfilePictureFile(s3Object.Key);
+      const signedObjectURL = await signProfilePictureFile(profilePicture);
 
       return res.status(200).json({
         profile: updatedPatient,
@@ -56,6 +53,11 @@ module.exports.uploadprofilePicture = async (req, res, next) => {
       });
   }
   if (req.user.role==="doctor"){
+    const keyName = `doctors/${profileId}`;
+    const s3Object = await uploadProfilePicture(keyName, req.file.buffer);
+
+    const profilePicture = s3Object.Key;
+
     const filter = { _id: profileId };
     const update = { profilePicture: profilePicture };
 
@@ -64,7 +66,7 @@ module.exports.uploadprofilePicture = async (req, res, next) => {
       update, {new: true});
 
       // Sign the URL
-      const signedObjectURL = await signProfilePictureFile(s3Object.Key);
+      const signedObjectURL = await signProfilePictureFile(profilePicture);
 
       return res.status(200).json({
         profile: updatedDoctor,
