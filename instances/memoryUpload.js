@@ -22,7 +22,7 @@ const memoryFileUpload = multer({
 const memoryImageUpload = multer({
   storage: storage,
   limits: {
-    fileSize: parseInt(process.env.MAX_UPLOAD_SIZE)
+    fileSize: parseInt(process.env.MAX_IMAGE_SIZE)
     },
     fileFilter(req, file, cb) {
     if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
