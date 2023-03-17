@@ -22,15 +22,14 @@ const memoryFileUpload = multer({
 const memoryImageUpload = multer({
   storage: storage,
   limits: {
-    fileSize: parseInt(process.env.MAX_IMAGE_SIZE)
-    },
-    fileFilter(req, file, cb) {
-    if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-    return cb( new Error('Please upload a valid image file'))
+    fileSize: parseInt(process.env.MAX_IMAGE_SIZE),
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new AppError("Please upload a valid image file", 400));
     }
-    cb(undefined, true)
-    }
+    cb(undefined, true);
+  },
 });
 
-
-module.exports = {memoryFileUpload,memoryImageUpload};
+module.exports = { memoryFileUpload, memoryImageUpload };
