@@ -101,3 +101,25 @@ module.exports.getReportById = async (req, res, next) => {
     },
   });
 };
+
+//  @desc   Get all reports that a doctor created
+//  @route  GET /api/v1/report/
+//  @access doctor
+module.exports.getDoctorReports = async (req, res, next) => {
+  let reports;
+
+  if (req.user.role === "doctor") {
+    reports = await Report.find({ _doctorId: req.user._profileId }).select(
+      "_patientId prediction"
+    );
+  } else if (req.user.role === "patient") {
+    reports = await Report.find({ _patientId: req.user._profileId }).select(
+      "_doctorId prediction"
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    reports,
+  });
+};
