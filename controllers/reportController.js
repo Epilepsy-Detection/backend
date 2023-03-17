@@ -103,20 +103,26 @@ module.exports.getReportById = async (req, res, next) => {
 };
 
 //  @desc   Get all reports that a doctor created
-//  @route  GET /api/v1/report/
+//  @route  GET /api/v1/report/patient
 //  @access doctor patient
-module.exports.getDoctorReports = async (req, res, next) => {
-  let reports;
+module.exports.getDoctorPatientsReports = async (req, res, next) => {
+  const reports = await Report.find({ _doctorId: req.user._profileId }).select(
+    "_patientId prediction"
+  );
 
-  if (req.user.role === "doctor") {
-    reports = await Report.find({ _doctorId: req.user._profileId }).select(
-      "_patientId prediction"
-    );
-  } else if (req.user.role === "patient") {
-    reports = await Report.find({ _patientId: req.user._profileId }).select(
-      "_doctorId prediction"
-    );
-  }
+  res.status(200).json({
+    success: true,
+    reports,
+  });
+};
+
+//  @desc   Get all reports for a patient
+//  @route  GET /api/v1/report/
+//  @access patient
+module.exports.getPatientReports = async (req, res, next) => {
+  const reports = await Report.find({ _patientId: req.user._profileId }).select(
+    "_doctorId prediction"
+  );
 
   res.status(200).json({
     success: true,
@@ -127,7 +133,7 @@ module.exports.getDoctorReports = async (req, res, next) => {
 //  @desc   Get all reports of a patient by this dr
 //  @route  GET /api/v1/report/patient/:patientId
 //  @access doctor
-module.exports.getPatientReports = async (req, res, next) => {
+module.exports.getPatientReportsById = async (req, res, next) => {
   const patientId = req.params.patientId;
 
   if (!patientId || !mongoose.Types.ObjectId.isValid(patientId)) {

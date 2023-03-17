@@ -4,13 +4,17 @@ const roles = require("../../middleware/role-auth");
 const {
   createReport,
   getReportById,
-  getDoctorReports,
+  getPatientReportsById,
+  getDoctorPatientsReports,
   getPatientReports,
 } = require("../../controllers/reportController");
 const { memoryFileUpload } = require("../../instances/memoryUpload");
 const { filenameExists } = require("../../middleware/filesPayloadExists");
 
 const router = express.Router();
+
+router.get("/patient/:patientId", roles(["doctor"]), getPatientReportsById);
+router.get("/patient", roles(["doctor"]), getDoctorPatientsReports);
 
 router.get("/:reportId", roles(["doctor"]), getReportById);
 
@@ -24,8 +28,6 @@ router
     ],
     createReport
   )
-  .get(roles(["doctor", "patient"]), getDoctorReports);
-
-router.get("/patient/:patientId", roles(["doctor"]), getPatientReports);
+  .get(roles(["patient"]), getPatientReports);
 
 module.exports = router;
