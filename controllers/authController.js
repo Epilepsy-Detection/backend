@@ -67,6 +67,29 @@ module.exports.register = async (req, res, next) => {
   userAuthenticated(res, user, profile);
 };
 
+//  @desc   Changes existing user password
+//  @route  PUT /api/v1/auth/password
+//  @access public
+//  @body   oldPassword newPassword
+module.exports.changePassword = async (req, res, next) => {
+  const { oldPassword, newPassword } = req.body;
+
+  const user = await User.findById(req.user._id);
+
+  const isOldPasswordCorrrect = await user.comparePassword(oldPassword);
+  if (!isOldPasswordCorrrect) {
+    throw new AppError("Incorrect old password", 400);
+  }
+
+  user.password = newPassword;
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Password is updated successfully!",
+  });
+};
+
 // Helper function to generate Authentication token and send profile data to user
 const userAuthenticated = (res, user, profile) => {
   const payload = { _profileId: profile._id };
