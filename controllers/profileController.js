@@ -20,6 +20,10 @@ module.exports.getMyProfile = async (req, res, next) => {
     profile = await Patient.findById(req.user._profileId);
   }
 
+  if (profile.profilePicture) {
+    await signProfileProfilePicture(profile);
+  }
+
   if (!profile) {
     return next(new AppError("Could not find a profile", 404));
   }
@@ -47,6 +51,10 @@ module.exports.getPatientProfile = async (req, res, next) => {
     return next(
       new AppError("You have no authorization over this patient", 403)
     );
+  }
+
+  if (patient.profilePicture) {
+    await signProfileProfilePicture(patient);
   }
 
   res.status(200).json({ patient });
@@ -104,12 +112,10 @@ module.exports.uploadProfilePicture = async (req, res, next) => {
       new: true,
     });
 
-    // Sign the URL
-    const signedObjectURL = await signProfilePictureFile(profilePicture);
+    await signProfileProfilePicture(updatedPatient);
 
     return res.status(200).json({
       profile: updatedPatient,
-      signedObjectURL: signedObjectURL,
     });
   }
 
@@ -127,12 +133,16 @@ module.exports.uploadProfilePicture = async (req, res, next) => {
       new: true,
     });
 
-    // Sign the URL
-    const signedObjectURL = await signProfilePictureFile(profilePicture);
+    await signProfileProfilePicture(updatedDoctor);
 
     return res.status(200).json({
       profile: updatedDoctor,
-      signedObjectURL: signedObjectURL,
     });
   }
+};
+
+const signProfileProfilePicture = async (profile) => {
+  const signedObjectURL = await signProfilePictureFile(profile.profilePicture);
+  profile.profilePicture = signedObjectURL;
+  return profile;
 };
