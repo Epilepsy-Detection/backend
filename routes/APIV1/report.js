@@ -5,6 +5,7 @@ const {
   createReport,
   getReportById,
   getDoctorReports,
+  getPatientReports,
 } = require("../../controllers/reportController");
 const { memoryFileUpload } = require("../../instances/memoryUpload");
 const { filenameExists } = require("../../middleware/filesPayloadExists");
@@ -24,5 +25,7 @@ router
     createReport
   )
   .get(roles(["doctor", "patient"]), getDoctorReports);
+
+router.get("/patient/:patientId", roles(["doctor"]), getPatientReports);
 
 module.exports = router;

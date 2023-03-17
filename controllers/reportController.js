@@ -123,3 +123,24 @@ module.exports.getDoctorReports = async (req, res, next) => {
     reports,
   });
 };
+
+//  @desc   Get all reports of a patient by this dr
+//  @route  GET /api/v1/report/patient/:patientId
+//  @access doctor
+module.exports.getPatientReports = async (req, res, next) => {
+  const patientId = req.params.patientId;
+
+  if (!patientId || !mongoose.Types.ObjectId.isValid(patientId)) {
+    return next(new AppError("Invalid patientId", 400));
+  }
+
+  const reports = await Report.find({
+    _doctorId: req.user._profileId,
+    _patientId: patientId,
+  }).select("prediction");
+
+  res.status(200).json({
+    success: true,
+    reports,
+  });
+};
