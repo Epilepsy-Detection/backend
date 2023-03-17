@@ -44,6 +44,7 @@ module.exports.createPatient = async (req, res, next) => {
 //  @access patient
 //  @body  name phone
 module.exports.createEmergencyContact = async (req, res, next) => {
+  
   const profileId = req.user._profileId;
   
   const patient = await Patient.findById(profileId);
