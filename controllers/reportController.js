@@ -104,7 +104,7 @@ module.exports.getReportById = async (req, res, next) => {
 
 //  @desc   Get all reports that a doctor created
 //  @route  GET /api/v1/report/
-//  @access doctor
+//  @access doctor patient
 module.exports.getDoctorReports = async (req, res, next) => {
   let reports;
 
