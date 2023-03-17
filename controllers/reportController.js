@@ -2,6 +2,7 @@ const AppError = require("ep-det-core/utils/AppError");
 const Patient = require("ep-det-core/models/mongoose/patient");
 const Report = require("ep-det-core/models/mongoose/report");
 const { predict } = require("../services/MLmodelService");
+const mongoose = require("mongoose");
 const {
   uploadPatientSignal,
   signPatientSignalFile,
@@ -67,4 +68,36 @@ module.exports.createReport = async (req, res, next) => {
   const signedObjectURL = await signPatientSignalFile(s3Object.Key);
 
   res.status(201).json({ report, url: signedObjectURL });
+};
+
+//  @desc   Get a report by reportId that belongs to doctor
+//  @route  GET /api/v1/report/:reportId
+//  @access doctor
+module.exports.getReportById = async (req, res, next) => {
+  const reportId = req.params.reportId;
+  const doctorId = req.user._profileId;
+
+  if (!reportId || !mongoose.Types.ObjectId.isValid(reportId)) {
+    return next(new AppError("Invalid reportId", 400));
+  }
+
+  const report = await Report.findById(reportId);
+  if (!report) {
+    return next(new AppError(`No report with id: ${reportId} is found`, 404));
+  } else if (report._doctorId.toString() !== doctorId) {
+    return next(
+      new AppError("You are not allowed to access this patient report", 403)
+    );
+  }
+
+  // Sign the URL
+  const fileUrl = await signPatientSignalFile(report.fileKey);
+
+  res.status(200).json({
+    success: true,
+    report: {
+      ...report._doc,
+      fileUrl,
+    },
+  });
 };
