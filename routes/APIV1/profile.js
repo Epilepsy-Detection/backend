@@ -21,7 +21,7 @@ router
       roles(["patient", "doctor"]),
       memoryImageUpload.single("image"),
       filenameExists("image"),
-      resizeImage(200, 200),
+      // resizeImage(200, 200),
     ],
     uploadprofilePicture
   );
