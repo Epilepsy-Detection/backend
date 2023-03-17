@@ -3,7 +3,7 @@ const multer = require("multer");
 const AppError = require("ep-det-core/utils/AppError");
 
 const storage = multer.memoryStorage();
-const memoryUpload = multer({
+const memoryFileUpload = multer({
   storage: storage,
   limits: {
     fileSize: parseInt(process.env.MAX_UPLOAD_SIZE),
@@ -19,4 +19,17 @@ const memoryUpload = multer({
   },
 });
 
-module.exports = memoryUpload;
+const memoryImageUpload = multer({
+  storage: storage,
+  limits: {
+    fileSize: parseInt(process.env.MAX_IMAGE_SIZE),
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new AppError("Please upload a valid image file", 400));
+    }
+    cb(undefined, true);
+  },
+});
+
+module.exports = { memoryFileUpload, memoryImageUpload };

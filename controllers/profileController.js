@@ -2,6 +2,11 @@ const Doctor = require("ep-det-core/models/mongoose/doctor");
 const Patient = require("ep-det-core/models/mongoose/patient");
 const AppError = require("ep-det-core/utils/AppError");
 const mongoose = require("mongoose");
+const path = require("path");
+const {
+  uploadProfilePicture,
+  signProfilePictureFile,
+} = require("../repositories/imageS3BucketRepo");
 
 //  @desc   returns user profile
 //  @route  GET /api/v1/profile
@@ -13,6 +18,10 @@ module.exports.getMyProfile = async (req, res, next) => {
     profile = await Doctor.findById(req.user._profileId);
   } else if (req.user.role === "patient") {
     profile = await Patient.findById(req.user._profileId);
+  }
+
+  if (profile.profilePicture) {
+    await signProfileProfilePicture(profile);
   }
 
   if (!profile) {
@@ -44,6 +53,10 @@ module.exports.getPatientProfile = async (req, res, next) => {
     );
   }
 
+  if (patient.profilePicture) {
+    await signProfileProfilePicture(patient);
+  }
+
   res.status(200).json({ patient });
 };
 
@@ -57,4 +70,79 @@ module.exports.getPatientsByDoctorId = async (req, res, next) => {
   }).select("firstName lastName");
 
   res.status(200).json({ patients });
+};
+
+const processImage = async (buffer) => {
+  try {
+    const arr = buffer.toString().split(/\r?\n/);
+
+    if (arr.length < parseInt(process.env.IMAGE_MIN_SIZE)) {
+      throw new AppError(`Small image, expected at least ${minImageSize}`);
+    }
+    return arr
+      .slice(0, parseInt(process.env.IMAGE_MIN_SIZE))
+      .map((i) => Number(i));
+  } catch (err) {
+    if (err instanceof AppError) {
+      throw err;
+    }
+    throw new AppError("Invalid image", 400);
+  }
+};
+
+//  @desc   allows patient or doctor to upload new image
+//  @route  POST /api/v1/profile/picture
+//  @access public
+//  @body   imageFile
+module.exports.uploadProfilePicture = async (req, res, next) => {
+  const profileId = req.user._profileId;
+
+  await processImage(req.file.buffer);
+
+  if (req.user.role === "patient") {
+    const keyName = `patients/${profileId}`;
+    const s3Object = await uploadProfilePicture(keyName, req.file.buffer);
+
+    const profilePicture = s3Object.Key;
+
+    const filter = { _id: profileId };
+    const update = { profilePicture: profilePicture };
+
+    const updatedPatient = await Patient.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    await signProfileProfilePicture(updatedPatient);
+
+    return res.status(200).json({
+      profile: updatedPatient,
+    });
+  }
+
+  if (req.user.role === "doctor") {
+    const fileExt = path.extname(req.file.originalname);
+    const keyName = `doctors/${profileId}${fileExt}`;
+    const s3Object = await uploadProfilePicture(keyName, req.file.buffer);
+
+    const profilePicture = s3Object.Key;
+
+    const filter = { _id: profileId };
+    const update = { profilePicture: profilePicture };
+
+    const updatedDoctor = await Doctor.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    await signProfileProfilePicture(updatedDoctor);
+
+    return res.status(200).json({
+      profile: updatedDoctor,
+    });
+  }
+};
+
+const signProfileProfilePicture = async (profile) => {
+  const signedObjectURL = await signProfilePictureFile(profile.profilePicture);
+  profile.profilePicture = signedObjectURL;
+  return profile;
 };
