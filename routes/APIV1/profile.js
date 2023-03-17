@@ -5,7 +5,7 @@ const {
   getMyProfile,
   getPatientProfile,
   getPatientsByDoctorId,
-  uploadprofilePicture,
+  uploadProfilePicture: uploadprofilePicture,
 } = require("../../controllers/profileController");
 const roles = require("../../middleware/role-auth");
 const { filenameExists } = require("../../middleware/filesPayloadExists");
