@@ -4,6 +4,7 @@ const User = require("ep-det-core/models/mongoose/user");
 const Doctor = require("ep-det-core/models/mongoose/doctor");
 const Patient = require("ep-det-core/models/mongoose/patient");
 const AppError = require("ep-det-core/utils/AppError");
+const signProfileProfilePicture = require("../utils/signProfilePicture");
 
 //  @desc   logins a user into the system and return access token and profile
 //  @route  POST /api/v1/auth/login
@@ -31,6 +32,10 @@ module.exports.login = async (req, res, next) => {
 
   if (!profile) {
     return next(new AppError("Could not find a profile", 404));
+  }
+
+  if (profile.profilePicture) {
+    await signProfileProfilePicture(profile);
   }
 
   userAuthenticated(res, user, profile);

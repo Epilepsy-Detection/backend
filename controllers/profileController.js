@@ -3,10 +3,8 @@ const Patient = require("ep-det-core/models/mongoose/patient");
 const AppError = require("ep-det-core/utils/AppError");
 const mongoose = require("mongoose");
 const path = require("path");
-const {
-  uploadProfilePicture,
-  signProfilePictureFile,
-} = require("../repositories/imageS3BucketRepo");
+const { uploadProfilePicture } = require("../repositories/imageS3BucketRepo");
+const signProfileProfilePicture = require("../utils/signProfilePicture");
 
 //  @desc   returns user profile
 //  @route  GET /api/v1/profile
@@ -20,12 +18,12 @@ module.exports.getMyProfile = async (req, res, next) => {
     profile = await Patient.findById(req.user._profileId);
   }
 
-  if (profile.profilePicture) {
-    await signProfileProfilePicture(profile);
-  }
-
   if (!profile) {
     return next(new AppError("Could not find a profile", 404));
+  }
+
+  if (profile.profilePicture) {
+    await signProfileProfilePicture(profile);
   }
 
   res.status(200).json({ profile });
@@ -139,10 +137,4 @@ module.exports.uploadProfilePicture = async (req, res, next) => {
       profile: updatedDoctor,
     });
   }
-};
-
-const signProfileProfilePicture = async (profile) => {
-  const signedObjectURL = await signProfilePictureFile(profile.profilePicture);
-  profile.profilePicture = signedObjectURL;
-  return profile;
 };
