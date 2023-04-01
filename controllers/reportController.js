@@ -106,9 +106,9 @@ module.exports.getReportById = async (req, res, next) => {
 //  @route  GET /api/v1/report/patient
 //  @access doctor patient
 module.exports.getDoctorPatientsReports = async (req, res, next) => {
-  const reports = await Report.find({ _doctorId: req.user._profileId }).select(
-    "_patientId prediction"
-  );
+  const reports = await Report.find({ _doctorId: req.user._profileId })
+    .select("_patientId prediction")
+    .populate({ path: "_patientId", select: "firstName lastName" });
 
   res.status(200).json({
     success: true,
