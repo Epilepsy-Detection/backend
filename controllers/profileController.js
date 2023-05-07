@@ -98,7 +98,8 @@ module.exports.uploadProfilePicture = async (req, res, next) => {
   await processImage(req.file.buffer);
 
   if (req.user.role === "patient") {
-    const keyName = `patients/${profileId}`;
+    const fileExt = path.extname(req.file.originalname);
+    const keyName = `patients/${profileId}${fileExt}`;
     const s3Object = await uploadProfilePicture(keyName, req.file.buffer);
 
     const profilePicture = s3Object.Key;
